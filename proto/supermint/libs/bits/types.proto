@@ -1,0 +1,9 @@
+syntax = "proto3";
+package supermint.libs.bits;
+
+option go_package = "github.com/vbhp/supermint/proto/supermint/libs/bits";
+
+message BitArray {
+  int64           bits  = 1;
+  repeated uint64 elems = 2;
+}

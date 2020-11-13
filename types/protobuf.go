@@ -1,12 +1,12 @@
 package types
 
 import (
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	cryptoenc "github.com/tendermint/tendermint/crypto/encoding"
-	"github.com/tendermint/tendermint/crypto/secp256k1"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	cryptoenc "github.com/vbhp/supermint/crypto/encoding"
+	"github.com/vbhp/supermint/crypto/secp256k1"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
 )
 
 //-------------------------------------------------------
@@ -26,7 +26,7 @@ var ABCIPubKeyTypesToNames = map[string]string{
 
 //-------------------------------------------------------
 
-// TM2PB is used for converting Tendermint ABCI to protobuf ABCI.
+// TM2PB is used for converting Supermint ABCI to protobuf ABCI.
 // UNSTABLE
 var TM2PB = tm2pb{}
 
@@ -122,7 +122,7 @@ func (tm2pb) NewValidatorUpdate(pubkey crypto.PubKey, power int64) abci.Validato
 
 //----------------------------------------------------------------------------
 
-// PB2TM is used for converting protobuf ABCI to Tendermint ABCI.
+// PB2TM is used for converting protobuf ABCI to Supermint ABCI.
 // UNSTABLE
 var PB2TM = pb2tm{}
 

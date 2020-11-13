@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tendermint/tendermint/light/provider"
-	rpcclient "github.com/tendermint/tendermint/rpc/client"
-	rpchttp "github.com/tendermint/tendermint/rpc/client/http"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/light/provider"
+	rpcclient "github.com/vbhp/supermint/rpc/client"
+	rpchttp "github.com/vbhp/supermint/rpc/client/http"
+	"github.com/vbhp/supermint/types"
 )
 
-// This is very brittle, see: https://github.com/tendermint/tendermint/issues/4740
+// This is very brittle, see: https://github.com/vbhp/supermint/issues/4740
 var (
 	regexpMissingHeight = regexp.MustCompile(`height \d+ (must be less than or equal to|is not available)`)
 	maxRetryAttempts    = 10

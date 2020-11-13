@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/vbhp/supermint/libs/log"
 )
 
 type Capabilities struct {
@@ -26,7 +26,7 @@ func makeUPNPListener(intPort int, extPort int, logger log.Logger) (NAT, net.Lis
 	}
 	logger.Info(fmt.Sprintf("External address: %v", ext))
 
-	port, err := nat.AddPortMapping("tcp", extPort, intPort, "Tendermint UPnP Probe", 0)
+	port, err := nat.AddPortMapping("tcp", extPort, intPort, "Supermint UPnP Probe", 0)
 	if err != nil {
 		return nat, nil, ext, fmt.Errorf("port mapping error: %v", err)
 	}

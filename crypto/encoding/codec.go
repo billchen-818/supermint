@@ -3,17 +3,17 @@ package encoding
 import (
 	"fmt"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	"github.com/tendermint/tendermint/crypto/secp256k1"
-	"github.com/tendermint/tendermint/libs/json"
-	pc "github.com/tendermint/tendermint/proto/tendermint/crypto"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	"github.com/vbhp/supermint/crypto/secp256k1"
+	"github.com/vbhp/supermint/libs/json"
+	pc "github.com/vbhp/supermint/proto/supermint/crypto"
 )
 
 func init() {
-	json.RegisterType((*pc.PublicKey)(nil), "tendermint.crypto.PublicKey")
-	json.RegisterType((*pc.PublicKey_Ed25519)(nil), "tendermint.crypto.PublicKey_Ed25519")
-	json.RegisterType((*pc.PublicKey_Secp256K1)(nil), "tendermint.crypto.PublicKey_Secp256K1")
+	json.RegisterType((*pc.PublicKey)(nil), "supermint.crypto.PublicKey")
+	json.RegisterType((*pc.PublicKey_Ed25519)(nil), "supermint.crypto.PublicKey_Ed25519")
+	json.RegisterType((*pc.PublicKey_Secp256K1)(nil), "supermint.crypto.PublicKey_Secp256K1")
 }
 
 // PubKeyToProto takes crypto.PubKey and transforms it to a protobuf Pubkey

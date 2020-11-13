@@ -5,14 +5,14 @@ import (
 	"net"
 	"time"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	"github.com/tendermint/tendermint/libs/log"
-	tmnet "github.com/tendermint/tendermint/libs/net"
-	tmrand "github.com/tendermint/tendermint/libs/rand"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	"github.com/vbhp/supermint/libs/log"
+	tmnet "github.com/vbhp/supermint/libs/net"
+	tmrand "github.com/vbhp/supermint/libs/rand"
 
-	"github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/p2p/conn"
+	"github.com/vbhp/supermint/config"
+	"github.com/vbhp/supermint/p2p/conn"
 )
 
 const testCh = 0x01

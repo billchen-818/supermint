@@ -1,8 +1,8 @@
 /*
-Package core defines the Tendermint RPC endpoints.
+Package core defines the Supermint RPC endpoints.
 
-Tendermint ships with its own JSONRPC library -
-https://github.com/tendermint/tendermint/tree/master/rpc/jsonrpc.
+Supermint ships with its own JSONRPC library -
+https://github.com/vbhp/supermint/tree/master/rpc/jsonrpc.
 
 ## Get the list
 

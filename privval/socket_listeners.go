@@ -4,8 +4,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	p2pconn "github.com/tendermint/tendermint/p2p/conn"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	p2pconn "github.com/vbhp/supermint/p2p/conn"
 )
 
 const (
@@ -140,7 +140,7 @@ func (ln *UnixListener) Accept() (net.Conn, error) {
 	conn := newTimeoutConn(tc, ln.timeoutReadWrite)
 
 	// TODO: wrap in something that authenticates
-	// with a MAC - https://github.com/tendermint/tendermint/issues/3099
+	// with a MAC - https://github.com/vbhp/supermint
 
 	return conn, nil
 }

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package supermint.mempool;
+
+option go_package = "github.com/vbhp/supermint/proto/supermint/mempool";
+
+message Txs {
+  repeated bytes txs = 1;
+}
+
+message Message {
+  oneof sum {
+    Txs txs = 1;
+  }
+}

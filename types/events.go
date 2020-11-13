@@ -3,10 +3,10 @@ package types
 import (
 	"fmt"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmpubsub "github.com/tendermint/tendermint/libs/pubsub"
-	tmquery "github.com/tendermint/tendermint/libs/pubsub/query"
+	abci "github.com/vbhp/supermint/abci/types"
+	tmjson "github.com/vbhp/supermint/libs/json"
+	tmpubsub "github.com/vbhp/supermint/libs/pubsub"
+	tmquery "github.com/vbhp/supermint/libs/pubsub/query"
 )
 
 // Reserved event types (alphabetically sorted).
@@ -46,16 +46,16 @@ type TMEventData interface {
 }
 
 func init() {
-	tmjson.RegisterType(EventDataNewBlock{}, "tendermint/event/NewBlock")
-	tmjson.RegisterType(EventDataNewBlockHeader{}, "tendermint/event/NewBlockHeader")
-	tmjson.RegisterType(EventDataNewEvidence{}, "tendermint/event/NewEvidence")
-	tmjson.RegisterType(EventDataTx{}, "tendermint/event/Tx")
-	tmjson.RegisterType(EventDataRoundState{}, "tendermint/event/RoundState")
-	tmjson.RegisterType(EventDataNewRound{}, "tendermint/event/NewRound")
-	tmjson.RegisterType(EventDataCompleteProposal{}, "tendermint/event/CompleteProposal")
-	tmjson.RegisterType(EventDataVote{}, "tendermint/event/Vote")
-	tmjson.RegisterType(EventDataValidatorSetUpdates{}, "tendermint/event/ValidatorSetUpdates")
-	tmjson.RegisterType(EventDataString(""), "tendermint/event/ProposalString")
+	tmjson.RegisterType(EventDataNewBlock{}, "supermint/event/NewBlock")
+	tmjson.RegisterType(EventDataNewBlockHeader{}, "supermint/event/NewBlockHeader")
+	tmjson.RegisterType(EventDataNewEvidence{}, "supermint/event/NewEvidence")
+	tmjson.RegisterType(EventDataTx{}, "supermint/event/Tx")
+	tmjson.RegisterType(EventDataRoundState{}, "supermint/event/RoundState")
+	tmjson.RegisterType(EventDataNewRound{}, "supermint/event/NewRound")
+	tmjson.RegisterType(EventDataCompleteProposal{}, "supermint/event/CompleteProposal")
+	tmjson.RegisterType(EventDataVote{}, "supermint/event/Vote")
+	tmjson.RegisterType(EventDataValidatorSetUpdates{}, "supermint/event/ValidatorSetUpdates")
+	tmjson.RegisterType(EventDataString(""), "supermint/event/ProposalString")
 }
 
 // Most event messages are basic types (a block, a transaction)

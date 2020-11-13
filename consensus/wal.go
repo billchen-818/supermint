@@ -11,13 +11,13 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	auto "github.com/tendermint/tendermint/libs/autofile"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	"github.com/tendermint/tendermint/libs/log"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	"github.com/tendermint/tendermint/libs/service"
-	tmcons "github.com/tendermint/tendermint/proto/tendermint/consensus"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	auto "github.com/vbhp/supermint/libs/autofile"
+	tmjson "github.com/vbhp/supermint/libs/json"
+	"github.com/vbhp/supermint/libs/log"
+	tmos "github.com/vbhp/supermint/libs/os"
+	"github.com/vbhp/supermint/libs/service"
+	tmcons "github.com/vbhp/supermint/proto/supermint/consensus"
+	tmtime "github.com/vbhp/supermint/types/time"
 )
 
 const (
@@ -46,9 +46,9 @@ type EndHeightMessage struct {
 type WALMessage interface{}
 
 func init() {
-	tmjson.RegisterType(msgInfo{}, "tendermint/wal/MsgInfo")
-	tmjson.RegisterType(timeoutInfo{}, "tendermint/wal/TimeoutInfo")
-	tmjson.RegisterType(EndHeightMessage{}, "tendermint/wal/EndHeightMessage")
+	tmjson.RegisterType(msgInfo{}, "supermint/wal/MsgInfo")
+	tmjson.RegisterType(timeoutInfo{}, "supermint/wal/TimeoutInfo")
+	tmjson.RegisterType(EndHeightMessage{}, "supermint/wal/EndHeightMessage")
 }
 
 //--------------------------------------------------------

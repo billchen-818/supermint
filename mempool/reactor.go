@@ -6,13 +6,13 @@ import (
 	"math"
 	"time"
 
-	cfg "github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/libs/clist"
-	"github.com/tendermint/tendermint/libs/log"
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	"github.com/tendermint/tendermint/p2p"
-	protomem "github.com/tendermint/tendermint/proto/tendermint/mempool"
-	"github.com/tendermint/tendermint/types"
+	cfg "github.com/vbhp/supermint/config"
+	"github.com/vbhp/supermint/libs/clist"
+	"github.com/vbhp/supermint/libs/log"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	"github.com/vbhp/supermint/p2p"
+	protomem "github.com/vbhp/supermint/proto/supermint/mempool"
+	"github.com/vbhp/supermint/types"
 )
 
 const (

@@ -10,16 +10,16 @@ import (
 	"github.com/gogo/protobuf/proto"
 	gogotypes "github.com/gogo/protobuf/types"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/merkle"
-	"github.com/tendermint/tendermint/crypto/tmhash"
-	"github.com/tendermint/tendermint/libs/bits"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmmath "github.com/tendermint/tendermint/libs/math"
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmversion "github.com/tendermint/tendermint/proto/tendermint/version"
-	"github.com/tendermint/tendermint/version"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/merkle"
+	"github.com/vbhp/supermint/crypto/tmhash"
+	"github.com/vbhp/supermint/libs/bits"
+	tmbytes "github.com/vbhp/supermint/libs/bytes"
+	tmmath "github.com/vbhp/supermint/libs/math"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	tmversion "github.com/vbhp/supermint/proto/supermint/version"
+	"github.com/vbhp/supermint/version"
 )
 
 const (
@@ -39,7 +39,7 @@ const (
 	MaxOverheadForBlock int64 = 11
 )
 
-// Block defines the atomic unit of a Tendermint blockchain.
+// Block defines the atomic unit of a Supermint blockchain.
 type Block struct {
 	mtx tmsync.Mutex
 
@@ -326,11 +326,11 @@ func MakeBlock(height int64, txs []Tx, lastCommit *Commit, evidence []Evidence) 
 
 //-----------------------------------------------------------------------------
 
-// Header defines the structure of a Tendermint block header.
+// Header defines the structure of a Supermint block header.
 // NOTE: changes to the Header should be duplicated in:
 // - header.Hash()
 // - abci.Header
-// - https://github.com/tendermint/spec/blob/master/spec/blockchain/blockchain.md
+// - https://github.com/supermint/spec/blob/master/spec/blockchain/blockchain.md
 type Header struct {
 	// basic block info
 	Version tmversion.Consensus `json:"version"`

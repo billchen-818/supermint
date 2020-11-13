@@ -8,10 +8,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tendermint/tendermint/abci/example/code"
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
-	"github.com/tendermint/tendermint/version"
+	"github.com/vbhp/supermint/abci/example/code"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/libs/log"
+	"github.com/vbhp/supermint/version"
 )
 
 // Application is an ABCI application for use by end-to-end tests. It is a

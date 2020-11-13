@@ -5,16 +5,16 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/log"
-	tmpubsub "github.com/tendermint/tendermint/libs/pubsub"
-	tmquery "github.com/tendermint/tendermint/libs/pubsub/query"
-	nm "github.com/tendermint/tendermint/node"
-	rpcclient "github.com/tendermint/tendermint/rpc/client"
-	"github.com/tendermint/tendermint/rpc/core"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/libs/bytes"
+	"github.com/vbhp/supermint/libs/log"
+	tmpubsub "github.com/vbhp/supermint/libs/pubsub"
+	tmquery "github.com/vbhp/supermint/libs/pubsub/query"
+	nm "github.com/vbhp/supermint/node"
+	rpcclient "github.com/vbhp/supermint/rpc/client"
+	"github.com/vbhp/supermint/rpc/core"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	rpctypes "github.com/vbhp/supermint/rpc/jsonrpc/types"
+	"github.com/vbhp/supermint/types"
 )
 
 /*
@@ -25,14 +25,14 @@ This implementation is useful for:
 
 * Running tests against a node in-process without the overhead
 of going through an http server
-* Communication between an ABCI app and Tendermint core when they
+* Communication between an ABCI app and Supermintcore when they
 are compiled in process.
 
 For real clients, you probably want to use client.HTTP.  For more
 powerful control during testing, you probably want the "client/mock" package.
 
-You can subscribe for any event published by Tendermint using Subscribe method.
-Note delivery is best-effort. If you don't read events fast enough, Tendermint
+You can subscribe for any event published by Supermintusing Subscribe method.
+Note delivery is best-effort. If you don't read events fast enough, Supermint
 might cancel the subscription. The client will attempt to resubscribe (you
 don't need to do anything). It will keep trying indefinitely with exponential
 backoff (10ms -> 20ms -> 40ms) until successful.

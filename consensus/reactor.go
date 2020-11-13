@@ -9,18 +9,18 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	cstypes "github.com/tendermint/tendermint/consensus/types"
-	"github.com/tendermint/tendermint/libs/bits"
-	tmevents "github.com/tendermint/tendermint/libs/events"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	"github.com/tendermint/tendermint/libs/log"
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	"github.com/tendermint/tendermint/p2p"
-	tmcons "github.com/tendermint/tendermint/proto/tendermint/consensus"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	sm "github.com/tendermint/tendermint/state"
-	"github.com/tendermint/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	cstypes "github.com/vbhp/supermint/consensus/types"
+	"github.com/vbhp/supermint/libs/bits"
+	tmevents "github.com/vbhp/supermint/libs/events"
+	tmjson "github.com/vbhp/supermint/libs/json"
+	"github.com/vbhp/supermint/libs/log"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	"github.com/vbhp/supermint/p2p"
+	tmcons "github.com/vbhp/supermint/proto/supermint/consensus"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	sm "github.com/vbhp/supermint/state"
+	"github.com/vbhp/supermint/types"
+	tmtime "github.com/vbhp/supermint/types/time"
 )
 
 const (
@@ -1407,15 +1407,15 @@ type Message interface {
 }
 
 func init() {
-	tmjson.RegisterType(&NewRoundStepMessage{}, "tendermint/NewRoundStepMessage")
-	tmjson.RegisterType(&NewValidBlockMessage{}, "tendermint/NewValidBlockMessage")
-	tmjson.RegisterType(&ProposalMessage{}, "tendermint/Proposal")
-	tmjson.RegisterType(&ProposalPOLMessage{}, "tendermint/ProposalPOL")
-	tmjson.RegisterType(&BlockPartMessage{}, "tendermint/BlockPart")
-	tmjson.RegisterType(&VoteMessage{}, "tendermint/Vote")
-	tmjson.RegisterType(&HasVoteMessage{}, "tendermint/HasVote")
-	tmjson.RegisterType(&VoteSetMaj23Message{}, "tendermint/VoteSetMaj23")
-	tmjson.RegisterType(&VoteSetBitsMessage{}, "tendermint/VoteSetBits")
+	tmjson.RegisterType(&NewRoundStepMessage{}, "supermint/NewRoundStepMessage")
+	tmjson.RegisterType(&NewValidBlockMessage{}, "supermint/NewValidBlockMessage")
+	tmjson.RegisterType(&ProposalMessage{}, "supermint/Proposal")
+	tmjson.RegisterType(&ProposalPOLMessage{}, "supermint/ProposalPOL")
+	tmjson.RegisterType(&BlockPartMessage{}, "supermint/BlockPart")
+	tmjson.RegisterType(&VoteMessage{}, "supermint/Vote")
+	tmjson.RegisterType(&HasVoteMessage{}, "supermint/HasVote")
+	tmjson.RegisterType(&VoteSetMaj23Message{}, "supermint/VoteSetMaj23")
+	tmjson.RegisterType(&VoteSetBitsMessage{}, "supermint/VoteSetBits")
 }
 
 func decodeMsg(bz []byte) (msg Message, err error) {

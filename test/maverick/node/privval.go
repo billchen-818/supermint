@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	"github.com/tendermint/tendermint/libs/tempfile"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint
+	"github.com/vbhp/supermint
+	tmbytes "github.com/vbhp/supermint
+	tmjson "github.com/vbhp/supermint
+	tmos "github.com/vbhp/supermint
+	"github.com/vbhp/supermint
+	tmproto "github.com/vbhp/supermint
+	"github.com/vbhp/supermint
 )
 
 // *******************************************************************************************************************

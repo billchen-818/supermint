@@ -1,4 +1,4 @@
-// Modified for Tendermint
+// Modified for Supermint
 // Originally Copyright (c) 2013-2014 Conformal Systems LLC.
 // https://github.com/conformal/btcd/blob/master/LICENSE
 
@@ -16,12 +16,12 @@ import (
 
 	"github.com/minio/highwayhash"
 
-	"github.com/tendermint/tendermint/crypto"
-	tmmath "github.com/tendermint/tendermint/libs/math"
-	tmrand "github.com/tendermint/tendermint/libs/rand"
-	"github.com/tendermint/tendermint/libs/service"
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	"github.com/tendermint/tendermint/p2p"
+	"github.com/vbhp/supermint/crypto"
+	tmmath "github.com/vbhp/supermint/libs/math"
+	tmrand "github.com/vbhp/supermint/libs/rand"
+	"github.com/vbhp/supermint/libs/service"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	"github.com/vbhp/supermint/p2p"
 )
 
 const (

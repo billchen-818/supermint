@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	e2e "github.com/tendermint/tendermint/test/e2e/pkg"
-	"github.com/tendermint/tendermint/types"
+	e2e "github.com/vbhp/supermint/test/e2e/pkg"
+	"github.com/vbhp/supermint/types"
 )
 
 var (
@@ -30,10 +30,10 @@ var (
 	nodeDatabases        = uniformChoice{"goleveldb", "cleveldb", "rocksdb", "boltdb", "badgerdb"}
 	nodeABCIProtocols    = uniformChoice{"unix", "tcp", "grpc", "builtin"}
 	nodePrivvalProtocols = uniformChoice{"file", "unix", "tcp"}
-	// FIXME v1 disabled due to https://github.com/tendermint/tendermint/issues/5444
+	// FIXME v1 disabled due to https://github.com/vbhp/supermint/issues/5444
 	// FIXME v2 disabled due to:
-	// https://github.com/tendermint/tendermint/issues/5513
-	// https://github.com/tendermint/tendermint/issues/5541
+	// https://github.com/vbhp/supermint/issues/5513
+	// https://github.com/vbhp/supermint/issues/5541
 	nodeFastSyncs         = uniformChoice{"", "v0"} // "v1", "v2"
 	nodeStateSyncs        = uniformChoice{false, true}
 	nodePersistIntervals  = uniformChoice{0, 1, 5}
@@ -48,7 +48,7 @@ var (
 	nodeMisbehaviors = weightedChoice{
 		// FIXME evidence disabled due to node panicing when not
 		// having sufficient block history to process evidence.
-		// https://github.com/tendermint/tendermint/issues/5617
+		// https://github.com/vbhp/supermint/issues/5617
 		// misbehaviorOption{"double-prevote"}: 1,
 		misbehaviorOption{}: 9,
 	}

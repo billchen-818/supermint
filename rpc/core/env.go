@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"time"
 
-	cfg "github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/consensus"
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/libs/log"
-	mempl "github.com/tendermint/tendermint/mempool"
-	"github.com/tendermint/tendermint/p2p"
-	"github.com/tendermint/tendermint/proxy"
-	sm "github.com/tendermint/tendermint/state"
-	"github.com/tendermint/tendermint/state/txindex"
-	"github.com/tendermint/tendermint/types"
+	cfg "github.com/vbhp/supermint/config"
+	"github.com/vbhp/supermint/consensus"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/libs/log"
+	mempl "github.com/vbhp/supermint/mempool"
+	"github.com/vbhp/supermint/p2p"
+	"github.com/vbhp/supermint/proxy"
+	sm "github.com/vbhp/supermint/state"
+	"github.com/vbhp/supermint/state/txindex"
+	"github.com/vbhp/supermint/types"
 )
 
 const (

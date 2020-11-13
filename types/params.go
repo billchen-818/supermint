@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/crypto/tmhash"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/crypto/tmhash"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
 )
 
 const (

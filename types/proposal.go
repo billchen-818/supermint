@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/protoio"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	tmbytes "github.com/vbhp/supermint/libs/bytes"
+	"github.com/vbhp/supermint/libs/protoio"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	tmtime "github.com/vbhp/supermint/types/time"
 )
 
 var (

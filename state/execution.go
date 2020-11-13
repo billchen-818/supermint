@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"time"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	cryptoenc "github.com/tendermint/tendermint/crypto/encoding"
-	"github.com/tendermint/tendermint/libs/fail"
-	"github.com/tendermint/tendermint/libs/log"
-	mempl "github.com/tendermint/tendermint/mempool"
-	tmstate "github.com/tendermint/tendermint/proto/tendermint/state"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/proxy"
-	"github.com/tendermint/tendermint/types"
+	abci "github.com/vbhp/supermint/abci/types"
+	cryptoenc "github.com/vbhp/supermint/crypto/encoding"
+	"github.com/vbhp/supermint/libs/fail"
+	"github.com/vbhp/supermint/libs/log"
+	mempl "github.com/vbhp/supermint/mempool"
+	tmstate "github.com/vbhp/supermint/proto/supermint/state"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	"github.com/vbhp/supermint/proxy"
+	"github.com/vbhp/supermint/types"
 )
 
 //-----------------------------------------------------------------------------
@@ -154,7 +154,7 @@ func (blockExec *BlockExecutor) ApplyBlock(
 
 	fail.Fail() // XXX
 
-	// validate the validator updates and convert to tendermint types
+	// validate the validator updates and convert to supermint types
 	abciValUpdates := abciResponses.EndBlock.ValidatorUpdates
 	err = validateValidatorUpdates(abciValUpdates, state.ConsensusParams.Validator)
 	if err != nil {
@@ -465,7 +465,7 @@ func updateState(
 
 // Fire NewBlock, NewBlockHeader.
 // Fire TxEvent for every tx.
-// NOTE: if Tendermint crashes before commit, some or all of these events may be published again.
+// NOTE: if Supermintashes before commit, some or all of these events may be published again.
 func fireEvents(
 	logger log.Logger,
 	eventBus types.BlockEventPublisher,

@@ -5,12 +5,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
 )
 
-// PrivValidator defines the functionality of a local Tendermint validator
+// PrivValidator defines the functionality of a local Supermint validator
 // that signs votes and proposals, and never double signs.
 type PrivValidator interface {
 	GetPubKey() (crypto.PubKey, error)

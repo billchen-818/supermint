@@ -5,18 +5,18 @@ import (
 	"fmt"
 	"sort"
 
-	tmmath "github.com/tendermint/tendermint/libs/math"
-	tmquery "github.com/tendermint/tendermint/libs/pubsub/query"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
-	"github.com/tendermint/tendermint/state/txindex/null"
-	"github.com/tendermint/tendermint/types"
+	tmmath "github.com/vbhp/supermint/libs/math"
+	tmquery "github.com/vbhp/supermint/libs/pubsub/query"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	rpctypes "github.com/vbhp/supermint/rpc/jsonrpc/types"
+	"github.com/vbhp/supermint/state/txindex/null"
+	"github.com/vbhp/supermint/types"
 )
 
 // Tx allows you to query the transaction results. `nil` could mean the
 // transaction is in the mempool, invalidated, or was not sent in the first
 // place.
-// More: https://docs.tendermint.com/master/rpc/#/Info/tx
+// More: https://docs.supermint.com/master/rpc/#/Info/tx
 func Tx(ctx *rpctypes.Context, hash []byte, prove bool) (*ctypes.ResultTx, error) {
 	// if index is disabled, return error
 	if _, ok := env.TxIndexer.(*null.TxIndex); ok {
@@ -53,7 +53,7 @@ func Tx(ctx *rpctypes.Context, hash []byte, prove bool) (*ctypes.ResultTx, error
 
 // TxSearch allows you to query for multiple transactions results. It returns a
 // list of transactions (maximum ?per_page entries) and the total count.
-// More: https://docs.tendermint.com/master/rpc/#/Info/tx_search
+// More: https://docs.supermint.com/master/rpc/#/Info/tx_search
 func TxSearch(ctx *rpctypes.Context, query string, prove bool, pagePtr, perPagePtr *int, orderBy string) (
 	*ctypes.ResultTxSearch, error) {
 	// if index is disabled, return error

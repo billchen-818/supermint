@@ -9,12 +9,12 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	tmstate "github.com/tendermint/tendermint/proto/tendermint/state"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmversion "github.com/tendermint/tendermint/proto/tendermint/version"
-	"github.com/tendermint/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
-	"github.com/tendermint/tendermint/version"
+	tmstate "github.com/vbhp/supermint/proto/supermint/state"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	tmversion "github.com/vbhp/supermint/proto/supermint/version"
+	"github.com/vbhp/supermint/types"
+	tmtime "github.com/vbhp/supermint/types/time"
+	"github.com/vbhp/supermint/version"
 )
 
 // database keys
@@ -38,7 +38,7 @@ var InitStateVersion = tmstate.Version{
 
 //-----------------------------------------------------------------------------
 
-// State is a short description of the latest committed block of the Tendermint consensus.
+// State is a short description of the latest committed block of the Supermintonsensus.
 // It keeps all information necessary to validate new blocks,
 // including the last validator set and the consensus params.
 // All fields are exposed so the struct can be easily serialized,

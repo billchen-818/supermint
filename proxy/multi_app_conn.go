@@ -3,10 +3,10 @@ package proxy
 import (
 	"fmt"
 
-	abcicli "github.com/tendermint/tendermint/abci/client"
-	tmlog "github.com/tendermint/tendermint/libs/log"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	"github.com/tendermint/tendermint/libs/service"
+	abcicli "github.com/vbhp/supermint/abci/client"
+	tmlog "github.com/vbhp/supermint/libs/log"
+	tmos "github.com/vbhp/supermint/libs/os"
+	"github.com/vbhp/supermint/libs/service"
 )
 
 const (
@@ -16,7 +16,7 @@ const (
 	connSnapshot  = "snapshot"
 )
 
-// AppConns is the Tendermint's interface to the application that consists of
+// AppConns is the Supermint's interface to the application that consists of
 // multiple connections.
 type AppConns interface {
 	service.Service
@@ -114,7 +114,7 @@ func (app *multiAppConn) OnStart() error {
 	app.consensusConnClient = c
 	app.consensusConn = NewAppConnConsensus(c)
 
-	// Kill Tendermint if the ABCI application crashes.
+	// Kill Supermint if the ABCI application crashes.
 	go app.killTMOnClientError()
 
 	return nil
@@ -127,7 +127,7 @@ func (app *multiAppConn) OnStop() {
 func (app *multiAppConn) killTMOnClientError() {
 	killFn := func(conn string, err error, logger tmlog.Logger) {
 		logger.Error(
-			fmt.Sprintf("%s connection terminated. Did the application crash? Please restart tendermint", conn),
+			fmt.Sprintf("%s connection terminated. Did the application crash? Please restart supermint", conn),
 			"err", err)
 		killErr := tmos.Kill()
 		if killErr != nil {

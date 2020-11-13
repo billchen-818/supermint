@@ -1,12 +1,12 @@
 package consensus
 
 import (
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/clist"
-	mempl "github.com/tendermint/tendermint/mempool"
-	tmstate "github.com/tendermint/tendermint/proto/tendermint/state"
-	"github.com/tendermint/tendermint/proxy"
-	"github.com/tendermint/tendermint/types"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/libs/clist"
+	mempl "github.com/vbhp/supermint/mempool"
+	tmstate "github.com/vbhp/supermint/proto/supermint/state"
+	"github.com/vbhp/supermint/proxy"
+	"github.com/vbhp/supermint/types"
 )
 
 //-----------------------------------------------------------------------------

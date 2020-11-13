@@ -3,11 +3,11 @@ package v2
 import (
 	"fmt"
 
-	bc "github.com/tendermint/tendermint/blockchain"
-	"github.com/tendermint/tendermint/p2p"
-	bcproto "github.com/tendermint/tendermint/proto/tendermint/blockchain"
-	"github.com/tendermint/tendermint/state"
-	"github.com/tendermint/tendermint/types"
+	bc "github.com/vbhp/supermint/blockchain"
+	"github.com/vbhp/supermint/p2p"
+	bcproto "github.com/vbhp/supermint/proto/supermint/blockchain"
+	"github.com/vbhp/supermint/state"
+	"github.com/vbhp/supermint/types"
 )
 
 type iIO interface {

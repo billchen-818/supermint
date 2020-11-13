@@ -1,3 +1,3 @@
-killall tendermint
+killall supermint
 killall abci-cli
-rm -rf ~/.tendermint_app
+rm -rf ~/.supermint_app

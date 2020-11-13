@@ -8,18 +8,18 @@ import (
 	"strings"
 	"time"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/libs/log"
 
-	cfg "github.com/tendermint/tendermint/config"
-	tmnet "github.com/tendermint/tendermint/libs/net"
-	nm "github.com/tendermint/tendermint/node"
-	"github.com/tendermint/tendermint/p2p"
-	"github.com/tendermint/tendermint/privval"
-	"github.com/tendermint/tendermint/proxy"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	core_grpc "github.com/tendermint/tendermint/rpc/grpc"
-	rpcclient "github.com/tendermint/tendermint/rpc/jsonrpc/client"
+	cfg "github.com/vbhp/supermint/config"
+	tmnet "github.com/vbhp/supermint/libs/net"
+	nm "github.com/vbhp/supermint/node"
+	"github.com/vbhp/supermint/p2p"
+	"github.com/vbhp/supermint/privval"
+	"github.com/vbhp/supermint/proxy"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	core_grpc "github.com/vbhp/supermint/rpc/grpc"
+	rpcclient "github.com/vbhp/supermint/rpc/jsonrpc/client"
 )
 
 // Options helps with specifying some parameters for our RPC testing for greater
@@ -97,7 +97,7 @@ func createConfig() *cfg.Config {
 	tm, rpc, grpc := makeAddrs()
 	c.P2P.ListenAddress = tm
 	c.RPC.ListenAddress = rpc
-	c.RPC.CORSAllowedOrigins = []string{"https://tendermint.com/"}
+	c.RPC.CORSAllowedOrigins = []string{"https://supermint.com/"}
 	c.RPC.GRPCListenAddress = grpc
 	return c
 }
@@ -115,7 +115,7 @@ func GetGRPCClient() core_grpc.BroadcastAPIClient {
 	return core_grpc.StartGRPCClient(grpcAddr)
 }
 
-// StartTendermint starts a test tendermint server in a go routine and returns when it is initialized
+// StartTendermint starts a test supermint server in a go routine and returns when it is initialized
 func StartTendermint(app abci.Application, opts ...func(*Options)) *nm.Node {
 	nodeOpts := defaultOptions
 	for _, opt := range opts {
@@ -132,13 +132,13 @@ func StartTendermint(app abci.Application, opts ...func(*Options)) *nm.Node {
 	waitForGRPC()
 
 	if !nodeOpts.suppressStdout {
-		fmt.Println("Tendermint running!")
+		fmt.Println("Supermintnning!")
 	}
 
 	return node
 }
 
-// StopTendermint stops a test tendermint server, waits until it's stopped and
+// StopTendermint stops a test supermint server, waits until it's stopped and
 // cleans up test/config files.
 func StopTendermint(node *nm.Node) {
 	if err := node.Stop(); err != nil {
@@ -148,7 +148,7 @@ func StopTendermint(node *nm.Node) {
 	os.RemoveAll(node.Config().RootDir)
 }
 
-// NewTendermint creates a new tendermint server and sleeps forever
+// NewTendermint creates a new supermint server and sleeps forever
 func NewTendermint(app abci.Application, opts *Options) *nm.Node {
 	// Create & start node
 	config := GetConfig(opts.recreateConfig)
@@ -181,7 +181,7 @@ func NewTendermint(app abci.Application, opts *Options) *nm.Node {
 	return node
 }
 
-// SuppressStdout is an option that tries to make sure the RPC test Tendermint
+// SuppressStdout is an option that tries to make sure the RPC test Supermint
 // node doesn't log anything to stdout.
 func SuppressStdout(o *Options) {
 	o.suppressStdout = true

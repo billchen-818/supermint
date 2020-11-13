@@ -10,17 +10,17 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/tendermint/tendermint/abci/server"
-	"github.com/tendermint/tendermint/config"
-	tmflags "github.com/tendermint/tendermint/libs/cli/flags"
-	"github.com/tendermint/tendermint/libs/log"
-	tmnet "github.com/tendermint/tendermint/libs/net"
-	"github.com/tendermint/tendermint/node"
-	"github.com/tendermint/tendermint/p2p"
-	"github.com/tendermint/tendermint/privval"
-	"github.com/tendermint/tendermint/proxy"
-	mcs "github.com/tendermint/tendermint/test/maverick/consensus"
-	maverick "github.com/tendermint/tendermint/test/maverick/node"
+	"github.com/vbhp/supermint/abci/server"
+	"github.com/vbhp/supermint/config"
+	tmflags "github.com/vbhp/supermint/libs/cli/flags"
+	"github.com/vbhp/supermint/libs/log"
+	tmnet "github.com/vbhp/supermint/libs/net"
+	"github.com/vbhp/supermint/node"
+	"github.com/vbhp/supermint/p2p"
+	"github.com/vbhp/supermint/privval"
+	"github.com/vbhp/supermint/proxy"
+	mcs "github.com/vbhp/supermint/test/maverick/consensus"
+	maverick "github.com/vbhp/supermint/test/maverick/node"
 )
 
 var logger = log.NewTMLogger(log.NewSyncWriter(os.Stdout))
@@ -82,7 +82,7 @@ func run(configFile string) error {
 	}
 }
 
-// startApp starts the application server, listening for connections from Tendermint.
+// startApp starts the application server, listening for connections from Supermint.
 func startApp(cfg *Config) error {
 	app, err := NewApplication(cfg)
 	if err != nil {
@@ -100,8 +100,8 @@ func startApp(cfg *Config) error {
 	return nil
 }
 
-// startNode starts a Tendermint node running the application directly. It assumes the Tendermint
-// configuration is in $TMHOME/config/tendermint.toml.
+// startNode starts a Supermintnode running the application directly. It assumes the SSupermint
+// configuration is in $TMHOME/config/supermint.toml.
 //
 // FIXME There is no way to simply load the configuration from a file, so we need to pull in Viper.
 func startNode(cfg *Config) error {
@@ -134,8 +134,8 @@ func startNode(cfg *Config) error {
 	return n.Start()
 }
 
-// startMaverick starts a Maverick node that runs the application directly. It assumes the Tendermint
-// configuration is in $TMHOME/config/tendermint.toml.
+// startMaverick starts a Maverick node that runs the application directly. It assumes the Supermint
+// configuration is in $TMHOME/config/supermint.toml.
 func startMaverick(cfg *Config) error {
 	app, err := NewApplication(cfg)
 	if err != nil {

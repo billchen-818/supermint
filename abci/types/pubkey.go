@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	cryptoenc "github.com/tendermint/tendermint/crypto/encoding"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	cryptoenc "github.com/vbhp/supermint/crypto/encoding"
 )
 
 const (

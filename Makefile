@@ -3,45 +3,45 @@
 PACKAGES=$(shell go list ./...)
 BUILDDIR ?= $(CURDIR)/build
 
-BUILD_TAGS?=tendermint
+BUILD_TAGS?=supermint
 VERSION := $(shell git describe --always)
-LD_FLAGS = -X github.com/tendermint/tendermint/version.TMCoreSemVer=$(VERSION)
+LD_FLAGS = -X github.com/vbhp/supermint/version.TMCoreSemVer=$(VERSION)
 BUILD_FLAGS = -mod=readonly -ldflags "$(LD_FLAGS)"
-HTTPS_GIT := https://github.com/tendermint/tendermint.git
+HTTPS_GIT := https://github.com/vbhp/supermint.git
 DOCKER_BUF := docker run -v $(shell pwd):/workspace --workdir /workspace bufbuild/buf
 CGO_ENABLED ?= 0
 
 # handle nostrip
-ifeq (,$(findstring nostrip,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (,$(findstring nostrip,$(SUPERMINT_BUILD_OPTIONS)))
   BUILD_FLAGS += -trimpath
   LD_FLAGS += -s -w
 endif
 
 # handle race
-ifeq (race,$(findstring race,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (race,$(findstring race,$(SUPERMINT_BUILD_OPTIONS)))
   CGO_ENABLED=1
   BUILD_FLAGS += -race
 endif
 
 # handle cleveldb
-ifeq (cleveldb,$(findstring cleveldb,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (cleveldb,$(findstring cleveldb,$(SUPERMINT_BUILD_OPTIONS)))
   CGO_ENABLED=1
   BUILD_TAGS += cleveldb
 endif
 
 # handle badgerdb
-ifeq (badgerdb,$(findstring badgerdb,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (badgerdb,$(findstring badgerdb,$(SUPERMINT_BUILD_OPTIONS)))
   BUILD_TAGS += badgerdb
 endif
 
 # handle rocksdb
-ifeq (rocksdb,$(findstring rocksdb,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (rocksdb,$(findstring rocksdb,$(SUPERMINT_BUILD_OPTIONS)))
   CGO_ENABLED=1
   BUILD_TAGS += rocksdb
 endif
 
 # handle boltdb
-ifeq (boltdb,$(findstring boltdb,$(TENDERMINT_BUILD_OPTIONS)))
+ifeq (boltdb,$(findstring boltdb,$(SUPERMINT_BUILD_OPTIONS)))
   BUILD_TAGS += boltdb
 endif
 
@@ -56,15 +56,15 @@ include tools.mk
 include tests.mk
 
 ###############################################################################
-###                                Build Tendermint                        ###
+###                                Build Supermint                        ###
 ###############################################################################
 
 build: $(BUILDDIR)/
-	CGO_ENABLED=$(CGO_ENABLED) go build $(BUILD_FLAGS) -tags '$(BUILD_TAGS)' -o $(BUILDDIR)/ ./cmd/tendermint/
+	CGO_ENABLED=$(CGO_ENABLED) go build $(BUILD_FLAGS) -tags '$(BUILD_TAGS)' -o $(BUILDDIR)/ ./cmd/supermint/
 .PHONY: build
 
 install:
-	CGO_ENABLED=$(CGO_ENABLED) go install $(BUILD_FLAGS) -tags $(BUILD_TAGS) ./cmd/tendermint
+	CGO_ENABLED=$(CGO_ENABLED) go install $(BUILD_FLAGS) -tags $(BUILD_TAGS) ./cmd/supermint
 .PHONY: install
 
 $(BUILDDIR)/:
@@ -88,7 +88,7 @@ proto-gen:
 
 proto-gen-docker:
 	@echo "Generating Protobuf files"
-	@docker run -v $(shell pwd):/workspace --workdir /workspace tendermintdev/docker-build-proto sh ./scripts/protocgen.sh
+	@docker run -v $(shell pwd):/workspace --workdir /workspace supermintdev/docker-build-proto sh ./scripts/protocgen.sh
 .PHONY: proto-gen-docker
 
 proto-lint:
@@ -97,7 +97,7 @@ proto-lint:
 
 proto-format:
 	@echo "Formatting Protobuf files"
-	docker run -v $(shell pwd):/workspace --workdir /workspace tendermintdev/docker-build-proto find ./ -not -path "./third_party/*" -name *.proto -exec clang-format -i {} \;
+	docker run -v $(shell pwd):/workspace --workdir /workspace supermintdev/docker-build-proto find ./ -not -path "./third_party/*" -name *.proto -exec clang-format -i {} \;
 .PHONY: proto-format
 
 proto-check-breaking:
@@ -143,12 +143,12 @@ go.sum: go.mod
 draw_deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go get github.com/RobotsAndPencils/goviz
-	@goviz -i github.com/tendermint/tendermint/cmd/tendermint -d 3 | dot -Tpng -o dependency-graph.png
+	@goviz -i github.com/vbhp/supermint/cmd/supermint -d 3 | dot -Tpng -o dependency-graph.png
 .PHONY: draw_deps
 
 get_deps_bin_size:
 	@# Copy of build recipe with additional flags to perform binary size analysis
-	$(eval $(shell go build -work -a $(BUILD_FLAGS) -tags $(BUILD_TAGS) -o $(BUILDDIR)/ ./cmd/tendermint/ 2>&1))
+	$(eval $(shell go build -work -a $(BUILD_FLAGS) -tags $(BUILD_TAGS) -o $(BUILDDIR)/ ./cmd/supermint/ 2>&1))
 	@find $(WORK) -type f -name "*.a" | xargs -I{} du -hxs "{}" | sort -rh | sed -e s:${WORK}/::g > deps_bin_size.log
 	@echo "Results can be found here: $(CURDIR)/deps_bin_size.log"
 .PHONY: get_deps_bin_size
@@ -159,9 +159,9 @@ get_deps_bin_size:
 
 # generates certificates for TLS testing in remotedb and RPC server
 gen_certs: clean_certs
-	certstrap init --common-name "tendermint.com" --passphrase ""
+	certstrap init --common-name "supermint.com" --passphrase ""
 	certstrap request-cert --common-name "server" -ip "127.0.0.1" --passphrase ""
-	certstrap sign "server" --CA "tendermint.com" --passphrase ""
+	certstrap sign "server" --CA "supermint.com" --passphrase ""
 	mv out/server.crt rpc/jsonrpc/server/test.crt
 	mv out/server.key rpc/jsonrpc/server/test.key
 	rm -rf out
@@ -179,7 +179,7 @@ clean_certs:
 
 format:
 	find . -name '*.go' -type f -not -path "*.git*" -not -name '*.pb.go' -not -name '*pb_test.go' | xargs gofmt -w -s
-	find . -name '*.go' -type f -not -path "*.git*"  -not -name '*.pb.go' -not -name '*pb_test.go' | xargs goimports -w -local github.com/tendermint/tendermint
+	find . -name '*.go' -type f -not -path "*.git*"  -not -name '*.pb.go' -not -name '*pb_test.go' | xargs goimports -w -local github.com/vbhp/supermint
 .PHONY: format
 
 lint:
@@ -192,7 +192,7 @@ DESTINATION = ./index.html.md
 ###############################################################################
 ###                           Documentation                                 ###
 ###############################################################################
-# todo remove once tendermint.com DNS is solved
+# todo remove once supermint.com DNS is solved
 build-docs:
 	@cd docs && \
 	while read -r branch path_prefix; do \
@@ -206,14 +206,14 @@ build-docs:
 build-gh-docs:
 	@cd docs && \
 	while read -r branch path_prefix; do \
-		(git checkout $${branch} && npm install && VUEPRESS_BASE="/tendermint/$${path_prefix}/" npm run build) ; \
+		(git checkout $${branch} && npm install && VUEPRESS_BASE="/supermint/$${path_prefix}/" npm run build) ; \
 		mkdir -p ~/output/$${path_prefix} ; \
 		cp -r .vuepress/dist/* ~/output/$${path_prefix}/ ; \
 		cp ~/output/$${path_prefix}/index.html ~/output ; \
 	done < versions ;
 .PHONY: build-docs
 
-# todo remove once tendermint.com DNS is solved
+# todo remove once supermint.com DNS is solved
 sync-docs:
 	cd ~/output && \
 	echo "role_arn = ${DEPLOYMENT_ROLE_ARN}" >> /root/.aws/config ; \
@@ -227,9 +227,9 @@ sync-docs:
 ###############################################################################
 
 build-docker: build-linux
-	cp $(BUILDDIR)/tendermint DOCKER/tendermint
-	docker build --label=tendermint --tag="tendermint/tendermint" DOCKER
-	rm -rf DOCKER/tendermint
+	cp $(BUILDDIR)/supermint DOCKER/supermint
+	docker build --label=supermint --tag="supermint/supermint" DOCKER
+	rm -rf DOCKER/supermint
 .PHONY: build-docker
 
 ###############################################################################
@@ -245,17 +245,17 @@ build-docker-localnode:
 	@cd networks/local && make
 .PHONY: build-docker-localnode
 
-# Runs `make build TENDERMINT_BUILD_OPTIONS=cleveldb` from within an Amazon
+# Runs `make build SUPERMINT_BUILD_OPTIONS=cleveldb` from within an Amazon
 # Linux (v2)-based Docker build container in order to build an Amazon
-# Linux-compatible binary. Produces a compatible binary at ./build/tendermint
+# Linux-compatible binary. Produces a compatible binary at ./build/supermint
 build_c-amazonlinux:
 	$(MAKE) -C ./DOCKER build_amazonlinux_buildimage
-	docker run --rm -it -v `pwd`:/tendermint tendermint/tendermint:build_c-amazonlinux
+	docker run --rm -it -v `pwd`:/supermint supermint/supermint:build_c-amazonlinux
 .PHONY: build_c-amazonlinux
 
 # Run a 4-node testnet locally
 localnet-start: localnet-stop build-docker-localnode
-	@if ! [ -f build/node0/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/tendermint:Z tendermint/localnode testnet --config /etc/tendermint/config-template.toml --o . --starting-ip-address 192.167.10.2; fi
+	@if ! [ -f build/node0/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/supermint:Z supermint/localnode testnet --config /etc/supermint/config-template.toml --o . --starting-ip-address 192.167.10.2; fi
 	docker-compose up
 .PHONY: localnet-start
 
@@ -289,7 +289,7 @@ build-reproducible:
 	docker rm latest-build || true
 	docker run --volume=$(CURDIR):/sources:ro \
 		--env TARGET_PLATFORMS='linux/amd64 linux/arm64 darwin/amd64 windows/amd64' \
-		--env APP=tendermint \
+		--env APP=supermint \
 		--env COMMIT=$(shell git rev-parse --short=8 HEAD) \
 		--env VERSION=$(shell git describe --tags) \
 		--name latest-build cosmossdk/rbuilder:latest

@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tendermint/tendermint/light/provider"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/light/provider"
+	"github.com/vbhp/supermint/types"
 )
 
 // The detector component of the light client detect and handles attacks on the light client.
 // More info here:
-// tendermint/docs/architecture/adr-047-handling-evidence-from-light-client.md
+// supermint/docs/architecture/adr-047-handling-evidence-from-light-client.md
 
 // detectDivergence is a second wall of defense for the light client.
 //
@@ -89,7 +89,7 @@ func (c *Client) detectDivergence(ctx context.Context, primaryTrace []*types.Lig
 			if primaryBlock.Commit.Round != witnessTrace[len(witnessTrace)-1].Commit.Round {
 				c.logger.Info("The light client has detected, and prevented, an attempted amnesia attack." +
 					" We think this attack is pretty unlikely, so if you see it, that's interesting to us." +
-					" Can you let us know by opening an issue through https://github.com/tendermint/tendermint/issues/new?")
+					" Can you let us know by opening an issue through https://github.com/vbhp/supermint/issues/new?")
 			}
 
 			// This may not be valid because the witness itself is at fault. So now we reverse it, examining the

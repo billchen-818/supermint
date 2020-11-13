@@ -29,7 +29,7 @@ const (
 // config/toml.go
 // NOTE: libs/cli must know to look in the config dir!
 var (
-	DefaultTendermintDir = ".tendermint"
+	DefaultTendermintDir = ".supermint"
 	defaultConfigDir     = "config"
 	defaultDataDir       = "data"
 
@@ -51,7 +51,7 @@ var (
 	defaultAddrBookPath = filepath.Join(defaultConfigDir, defaultAddrBookName)
 )
 
-// Config defines the top level configuration for a Tendermint node
+// Config defines the top level configuration for a Supermint node
 type Config struct {
 	// Top level options use an anonymous struct
 	BaseConfig `mapstructure:",squash"`
@@ -67,7 +67,7 @@ type Config struct {
 	Instrumentation *InstrumentationConfig `mapstructure:"instrumentation"`
 }
 
-// DefaultConfig returns a default configuration for a Tendermint node
+// DefaultConfig returns a default configuration for a Supermint node
 func DefaultConfig() *Config {
 	return &Config{
 		BaseConfig:      DefaultBaseConfig(),
@@ -140,7 +140,7 @@ func (cfg *Config) ValidateBasic() error {
 //-----------------------------------------------------------------------------
 // BaseConfig
 
-// BaseConfig defines the base configuration for a Tendermint node
+// BaseConfig defines the base configuration for a Supermint node
 type BaseConfig struct { //nolint: maligned
 	// chainID is unexposed and immutable but here for convenience
 	chainID string
@@ -150,7 +150,7 @@ type BaseConfig struct { //nolint: maligned
 	RootDir string `mapstructure:"home"`
 
 	// TCP or UNIX socket address of the ABCI application,
-	// or the name of an ABCI application compiled in with the Tendermint binary
+	// or the name of an ABCI application compiled in with the Supermint binary
 	ProxyApp string `mapstructure:"proxy_app"`
 
 	// A custom human readable name for this node
@@ -200,7 +200,7 @@ type BaseConfig struct { //nolint: maligned
 	// Path to the JSON file containing the last sign state of a validator
 	PrivValidatorState string `mapstructure:"priv_validator_state_file"`
 
-	// TCP or UNIX socket address for Tendermint to listen on for
+	// TCP or UNIX socket address for Supermint to listen on for
 	// connections from an external PrivValidator process
 	PrivValidatorListenAddr string `mapstructure:"priv_validator_laddr"`
 
@@ -215,7 +215,7 @@ type BaseConfig struct { //nolint: maligned
 	FilterPeers bool `mapstructure:"filter_peers"` // false
 }
 
-// DefaultBaseConfig returns a default base configuration for a Tendermint node
+// DefaultBaseConfig returns a default base configuration for a Supermint node
 func DefaultBaseConfig() BaseConfig {
 	return BaseConfig{
 		Genesis:            defaultGenesisJSONPath,
@@ -234,7 +234,7 @@ func DefaultBaseConfig() BaseConfig {
 	}
 }
 
-// TestBaseConfig returns a base configuration for testing a Tendermint node
+// TestBaseConfig returns a base configuration for testing a Supermint node
 func TestBaseConfig() BaseConfig {
 	cfg := DefaultBaseConfig()
 	cfg.chainID = "tendermint_test"
@@ -298,7 +298,7 @@ func DefaultPackageLogLevels() string {
 //-----------------------------------------------------------------------------
 // RPCConfig
 
-// RPCConfig defines the configuration options for the Tendermint RPC server
+// RPCConfig defines the configuration options for the Supermint RPC server
 type RPCConfig struct {
 	RootDir string `mapstructure:"home"`
 
@@ -353,7 +353,7 @@ type RPCConfig struct {
 	// How long to wait for a tx to be committed during /broadcast_tx_commit
 	// WARNING: Using a value larger than 10s will result in increasing the
 	// global HTTP write timeout, which applies to all connections and endpoints.
-	// See https://github.com/tendermint/tendermint/issues/3435
+	// See https://github.com/vbhp/supermint/issues/3435
 	TimeoutBroadcastTxCommit time.Duration `mapstructure:"timeout_broadcast_tx_commit"`
 
 	// Maximum size of request body, in bytes
@@ -363,20 +363,20 @@ type RPCConfig struct {
 	MaxHeaderBytes int `mapstructure:"max_header_bytes"`
 
 	// The path to a file containing certificate that is used to create the HTTPS server.
-	// Migth be either absolute path or path related to tendermint's config directory.
+	// Migth be either absolute path or path related to supermint's config directory.
 	//
 	// If the certificate is signed by a certificate authority,
 	// the certFile should be the concatenation of the server's certificate, any intermediates,
 	// and the CA's certificate.
 	//
-	// NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
+	// NOTE: both tls_cert_file and tls_key_file must be present for Supermint to create HTTPS server.
 	// Otherwise, HTTP server is run.
 	TLSCertFile string `mapstructure:"tls_cert_file"`
 
 	// The path to a file containing matching private key that is used to create the HTTPS server.
-	// Migth be either absolute path or path related to tendermint's config directory.
+	// Migth be either absolute path or path related to supermint's config directory.
 	//
-	// NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
+	// NOTE: both tls_cert_file and tls_key_file must be present for Supermint to create HTTPS server.
 	// Otherwise, HTTP server is run.
 	TLSKeyFile string `mapstructure:"tls_key_file"`
 
@@ -473,7 +473,7 @@ func (cfg RPCConfig) IsTLSEnabled() bool {
 //-----------------------------------------------------------------------------
 // P2PConfig
 
-// P2PConfig defines the configuration options for the Tendermint peer-to-peer networking layer
+// P2PConfig defines the configuration options for the Supermint peer-to-peer networking layer
 type P2PConfig struct { //nolint: maligned
 	RootDir string `mapstructure:"home"`
 
@@ -617,7 +617,7 @@ func (cfg *P2PConfig) ValidateBasic() error {
 //-----------------------------------------------------------------------------
 // MempoolConfig
 
-// MempoolConfig defines the configuration options for the Tendermint mempool
+// MempoolConfig defines the configuration options for the Supermint mempool
 type MempoolConfig struct {
 	RootDir   string `mapstructure:"home"`
 	Recheck   bool   `mapstructure:"recheck"`
@@ -639,7 +639,7 @@ type MempoolConfig struct {
 	MaxBatchBytes int `mapstructure:"max_batch_bytes"`
 }
 
-// DefaultMempoolConfig returns a default configuration for the Tendermint mempool
+// DefaultMempoolConfig returns a default configuration for the Supermint mempool
 func DefaultMempoolConfig() *MempoolConfig {
 	return &MempoolConfig{
 		Recheck:   true,
@@ -655,7 +655,7 @@ func DefaultMempoolConfig() *MempoolConfig {
 	}
 }
 
-// TestMempoolConfig returns a configuration for testing the Tendermint mempool
+// TestMempoolConfig returns a configuration for testing the Supermint mempool
 func TestMempoolConfig() *MempoolConfig {
 	cfg := DefaultMempoolConfig()
 	cfg.CacheSize = 1000
@@ -699,7 +699,7 @@ func (cfg *MempoolConfig) ValidateBasic() error {
 //-----------------------------------------------------------------------------
 // StateSyncConfig
 
-// StateSyncConfig defines the configuration for the Tendermint state sync service
+// StateSyncConfig defines the configuration for the Supermint state sync service
 type StateSyncConfig struct {
 	Enable        bool          `mapstructure:"enable"`
 	TempDir       string        `mapstructure:"temp_dir"`
@@ -766,7 +766,7 @@ func (cfg *StateSyncConfig) ValidateBasic() error {
 //-----------------------------------------------------------------------------
 // FastSyncConfig
 
-// FastSyncConfig defines the configuration for the Tendermint fast sync service
+// FastSyncConfig defines the configuration for the Supermint fast sync service
 type FastSyncConfig struct {
 	Version string `mapstructure:"version"`
 }
@@ -800,7 +800,7 @@ func (cfg *FastSyncConfig) ValidateBasic() error {
 //-----------------------------------------------------------------------------
 // ConsensusConfig
 
-// ConsensusConfig defines the configuration for the Tendermint consensus service,
+// ConsensusConfig defines the configuration for the Supermint consensus service,
 // including timeouts and details about the WAL and the block structure.
 type ConsensusConfig struct {
 	RootDir string `mapstructure:"home"`
@@ -1024,7 +1024,7 @@ func DefaultInstrumentationConfig() *InstrumentationConfig {
 		Prometheus:           false,
 		PrometheusListenAddr: ":26660",
 		MaxOpenConnections:   3,
-		Namespace:            "tendermint",
+		Namespace:            "supermint",
 	}
 }
 

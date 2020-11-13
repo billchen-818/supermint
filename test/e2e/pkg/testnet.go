@@ -12,12 +12,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	"github.com/tendermint/tendermint/crypto/secp256k1"
-	rpchttp "github.com/tendermint/tendermint/rpc/client/http"
-	mcs "github.com/tendermint/tendermint/test/maverick/consensus"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/crypto"
+	"github.com/vbhp/supermint/crypto/ed25519"
+	"github.com/vbhp/supermint/crypto/secp256k1"
+	rpchttp "github.com/vbhp/supermint/rpc/client/http"
+	mcs "github.com/vbhp/supermint/test/maverick/consensus"
+	"github.com/vbhp/supermint/types"
 )
 
 const (
@@ -62,7 +62,7 @@ type Testnet struct {
 	KeyType          string
 }
 
-// Node represents a Tendermint node in a testnet.
+// Node represents a Supermint node in a testnet.
 type Node struct {
 	Name             string
 	Testnet          *Testnet

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	types "github.com/tendermint/tendermint/rpc/jsonrpc/types"
+	tmjson "github.com/vbhp/supermint/libs/json"
+	types "github.com/vbhp/supermint/rpc/jsonrpc/types"
 )
 
 func unmarshalResponseBytes(

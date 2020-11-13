@@ -11,14 +11,14 @@ import (
 	secp256k1 "github.com/btcsuite/btcd/btcec"
 	"golang.org/x/crypto/ripemd160" // nolint: staticcheck // necessary for Bitcoin address format
 
-	"github.com/tendermint/tendermint/crypto"
-	tmjson "github.com/tendermint/tendermint/libs/json"
+	"github.com/vbhp/supermint/crypto"
+	tmjson "github.com/vbhp/supermint/libs/json"
 )
 
 //-------------------------------------
 const (
-	PrivKeyName = "tendermint/PrivKeySecp256k1"
-	PubKeyName  = "tendermint/PubKeySecp256k1"
+	PrivKeyName = "supermint/PrivKeySecp256k1"
+	PubKeyName  = "supermint/PubKeySecp256k1"
 
 	KeyType     = "secp256k1"
 	PrivKeySize = 32

@@ -8,20 +8,20 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	cmd "github.com/tendermint/tendermint/cmd/tendermint/commands"
-	"github.com/tendermint/tendermint/cmd/tendermint/commands/debug"
-	cfg "github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/libs/cli"
-	tmflags "github.com/tendermint/tendermint/libs/cli/flags"
-	"github.com/tendermint/tendermint/libs/log"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	tmrand "github.com/tendermint/tendermint/libs/rand"
-	"github.com/tendermint/tendermint/p2p"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	cs "github.com/tendermint/tendermint/test/maverick/consensus"
-	nd "github.com/tendermint/tendermint/test/maverick/node"
-	"github.com/tendermint/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	cmd "github.com/vbhp/supermint/cmd/supermint/commands"
+	"github.com/vbhp/supermint/cmd/supermint/commands/debug"
+	cfg "github.com/vbhp/supermint/config"
+	"github.com/vbhp/supermint/libs/cli"
+	tmflags "github.com/vbhp/supermint/libs/cli/flags"
+	"github.com/vbhp/supermint/libs/log"
+	tmos "github.com/vbhp/supermint/libs/os"
+	tmrand "github.com/vbhp/supermint/libs/rand"
+	"github.com/vbhp/supermint/p2p"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	cs "github.com/vbhp/supermint/test/maverick/consensus"
+	nd "github.com/vbhp/supermint/test/maverick/node"
+	"github.com/vbhp/supermint/types"
+	tmtime "github.com/vbhp/supermint/types/time"
 )
 
 var (
@@ -52,11 +52,11 @@ func ParseConfig() (*cfg.Config, error) {
 	return conf, err
 }
 
-// RootCmd is the root command for Tendermint core.
+// RootCmd is the root command for Supermintore.
 var RootCmd = &cobra.Command{
 	Use:   "maverick",
-	Short: "Tendermint Maverick Node",
-	Long: "Tendermint Maverick Node for testing with faulty consensus misbehaviors in a testnet. Contains " +
+	Short: "Supermintaverick Node",
+	Long: "Supermintaverick Node for testing with faulty consensus misbehaviors in a testnet. Contains " +
 		"all the functionality of a normal node but custom misbehaviors can be injected when running the node " +
 		"through a flag. See maverick node --help for how the misbehavior flag is constructured",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) (err error) {
@@ -161,7 +161,7 @@ var keyType string
 
 var InitFilesCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Initialize Tendermint",
+	Short: "Initialize Supermint
 	RunE:  initFiles,
 }
 

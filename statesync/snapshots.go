@@ -8,8 +8,8 @@ import (
 	"sort"
 	"time"
 
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	"github.com/tendermint/tendermint/p2p"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	"github.com/vbhp/supermint/p2p"
 )
 
 // snapshotKey is a snapshot key used for lookups.

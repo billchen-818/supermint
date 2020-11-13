@@ -1,4 +1,4 @@
-module github.com/tendermint/tendermint
+module github.com/vbhp/supermint
 
 go 1.15
 

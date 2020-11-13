@@ -3,17 +3,17 @@ package mock
 import (
 	"context"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/proxy"
-	"github.com/tendermint/tendermint/rpc/client"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	"github.com/tendermint/tendermint/types"
+	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/libs/bytes"
+	"github.com/vbhp/supermint/proxy"
+	"github.com/vbhp/supermint/rpc/client"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	"github.com/vbhp/supermint/types"
 )
 
 // ABCIApp will send all abci related request to the named app,
 // so you can test app behavior from a client without needing
-// an entire tendermint node
+// an entire supermint node
 type ABCIApp struct {
 	App abci.Application
 }
@@ -92,7 +92,7 @@ func (a ABCIApp) BroadcastTxSync(ctx context.Context, tx types.Tx) (*ctypes.Resu
 
 // ABCIMock will send all abci related request to the named app,
 // so you can test app behavior from a client without needing
-// an entire tendermint node
+// an entire supermint node
 type ABCIMock struct {
 	Info            Call
 	Query           Call

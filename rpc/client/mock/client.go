@@ -10,7 +10,7 @@ the server response you want to mock (eg. error handling),
 or if you just want to record the calls to verify in your tests.
 
 For real clients, you probably want the "http" package.  If you
-want to directly call a tendermint node in process, you can use the
+want to directly call a supermint node in process, you can use the
 "local" package.
 */
 
@@ -18,13 +18,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/service"
-	"github.com/tendermint/tendermint/rpc/client"
-	"github.com/tendermint/tendermint/rpc/core"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/libs/bytes"
+	"github.com/vbhp/supermint/libs/service"
+	"github.com/vbhp/supermint/rpc/client"
+	"github.com/vbhp/supermint/rpc/core"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	rpctypes "github.com/vbhp/supermint/rpc/jsonrpc/types"
+	"github.com/vbhp/supermint/types"
 )
 
 // Client wraps arbitrary implementations of the various interfaces.

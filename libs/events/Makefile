@@ -1,5 +1,5 @@
 .PHONY: docs
-REPO:=github.com/tendermint/tendermint/libs/events
+REPO:=github.com/vbhp/supermint
 
 docs:
 	@go get github.com/davecheney/godoc2md

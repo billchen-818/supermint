@@ -3,9 +3,9 @@ package consensus
 import (
 	"fmt"
 
-	cstypes "github.com/tendermint/tendermint/consensus/types"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/types"
+	cstypes "github.com/vbhp/supermint/consensus/types"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	"github.com/vbhp/supermint/types"
 )
 
 // MisbehaviorList encompasses a list of all possible behaviors

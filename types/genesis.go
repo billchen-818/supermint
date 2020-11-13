@@ -8,12 +8,12 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/tendermint/tendermint/crypto"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	"github.com/vbhp/supermint/crypto"
+	tmbytes "github.com/vbhp/supermint/libs/bytes"
+	tmjson "github.com/vbhp/supermint/libs/json"
+	tmos "github.com/vbhp/supermint/libs/os"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	tmtime "github.com/vbhp/supermint/types/time"
 )
 
 const (
@@ -25,7 +25,7 @@ const (
 // core types for a genesis definition
 // NOTE: any changes to the genesis definition should
 // be reflected in the documentation:
-// docs/tendermint-core/using-tendermint.md
+// docs/supermint-core/using-supermint.md
 
 // GenesisValidator is an initial validator.
 type GenesisValidator struct {
@@ -35,7 +35,7 @@ type GenesisValidator struct {
 	Name    string        `json:"name"`
 }
 
-// GenesisDoc defines the initial conditions for a tendermint blockchain, in particular its validator set.
+// GenesisDoc defines the initial conditions for a supermint blockchain, in particular its validator set.
 type GenesisDoc struct {
 	GenesisTime     time.Time                `json:"genesis_time"`
 	ChainID         string                   `json:"chain_id"`

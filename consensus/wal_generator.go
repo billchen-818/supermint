@@ -11,15 +11,15 @@ import (
 
 	db "github.com/tendermint/tm-db"
 
-	"github.com/tendermint/tendermint/abci/example/kvstore"
-	cfg "github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/libs/log"
-	tmrand "github.com/tendermint/tendermint/libs/rand"
-	"github.com/tendermint/tendermint/privval"
-	"github.com/tendermint/tendermint/proxy"
-	sm "github.com/tendermint/tendermint/state"
-	"github.com/tendermint/tendermint/store"
-	"github.com/tendermint/tendermint/types"
+	"github.com/vbhp/supermint/abci/example/kvstore"
+	cfg "github.com/vbhp/supermint/config"
+	"github.com/vbhp/supermint/libs/log"
+	tmrand "github.com/vbhp/supermint/libs/rand"
+	"github.com/vbhp/supermint/privval"
+	"github.com/vbhp/supermint/proxy"
+	sm "github.com/vbhp/supermint/state"
+	"github.com/vbhp/supermint/store"
+	"github.com/vbhp/supermint/types"
 )
 
 // WALGenerateNBlocks generates a consensus WAL. It does this by spinning up a
@@ -118,7 +118,7 @@ func WALGenerateNBlocks(t *testing.T, wr io.Writer, numBlocks int) (err error) {
 		if err := consensusState.Stop(); err != nil {
 			t.Error(err)
 		}
-		return fmt.Errorf("waited too long for tendermint to produce %d blocks (grep logs for `wal_generator`)", numBlocks)
+		return fmt.Errorf("waited too long for supermint to produce %d blocks (grep logs for `wal_generator`)", numBlocks)
 	}
 }
 

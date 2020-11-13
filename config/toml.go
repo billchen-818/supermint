@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	tmos "github.com/tendermint/tendermint/libs/os"
+	tmos "github.com/vbhp/supermint/libs/os"
 )
 
 // DefaultDirPerm is the default permissions used when creating directories.
@@ -49,7 +49,7 @@ func EnsureRoot(rootDir string) {
 	}
 }
 
-// XXX: this func should probably be called by cmd/tendermint/commands/init.go
+// XXX: this func should probably be called by cmd/supermint/commands/init.go
 // alongside the writing of the genesis.json and priv_validator.json
 func writeDefaultConfigFile(configFilePath string) {
 	WriteConfigFile(configFilePath, DefaultConfig())
@@ -73,7 +73,7 @@ const defaultConfigTemplate = `# This is a TOML config file.
 
 # NOTE: Any path below can be absolute (e.g. "/var/myawesomeapp/data") or
 # relative to the home directory (e.g. "data"). The home directory is
-# "$HOME/.tendermint" by default, but could be changed via $TMHOME env variable
+# "$HOME/.supermint" by default, but could be changed via $TMHOME env variable
 # or --home cmd flag.
 
 #######################################################################
@@ -81,7 +81,7 @@ const defaultConfigTemplate = `# This is a TOML config file.
 #######################################################################
 
 # TCP or UNIX socket address of the ABCI application,
-# or the name of an ABCI application compiled in with the Tendermint binary
+# or the name of an ABCI application compiled in with the Supermint binary
 proxy_app = "{{ .BaseConfig.ProxyApp }}"
 
 # A custom human readable name for this node
@@ -133,7 +133,7 @@ priv_validator_key_file = "{{ js .BaseConfig.PrivValidatorKey }}"
 # Path to the JSON file containing the last sign state of a validator
 priv_validator_state_file = "{{ js .BaseConfig.PrivValidatorState }}"
 
-# TCP or UNIX socket address for Tendermint to listen on for
+# TCP or UNIX socket address for Supermint to listen on for
 # connections from an external PrivValidator process
 priv_validator_laddr = "{{ .BaseConfig.PrivValidatorListenAddr }}"
 
@@ -209,7 +209,7 @@ max_subscriptions_per_client = {{ .RPC.MaxSubscriptionsPerClient }}
 # How long to wait for a tx to be committed during /broadcast_tx_commit.
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
-# See https://github.com/tendermint/tendermint/issues/3435
+# See https://github.com/vbhp/supermint/issues/3435
 timeout_broadcast_tx_commit = "{{ .RPC.TimeoutBroadcastTxCommit }}"
 
 # Maximum size of request body, in bytes
@@ -219,17 +219,17 @@ max_body_bytes = {{ .RPC.MaxBodyBytes }}
 max_header_bytes = {{ .RPC.MaxHeaderBytes }}
 
 # The path to a file containing certificate that is used to create the HTTPS server.
-# Migth be either absolute path or path related to tendermint's config directory.
+# Migth be either absolute path or path related to supermint's config directory.
 # If the certificate is signed by a certificate authority,
 # the certFile should be the concatenation of the server's certificate, any intermediates,
 # and the CA's certificate.
-# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
+# NOTE: both tls_cert_file and tls_key_file must be present for Supermint to create HTTPS server.
 # Otherwise, HTTP server is run.
 tls_cert_file = "{{ .RPC.TLSCertFile }}"
 
 # The path to a file containing matching private key that is used to create the HTTPS server.
-# Migth be either absolute path or path related to tendermint's config directory.
-# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
+# Migth be either absolute path or path related to supermint's config directory.
+# NOTE: both tls_cert_file and tls_key_file must be present for Supermint to create HTTPS server.
 # Otherwise, HTTP server is run.
 tls_key_file = "{{ .RPC.TLSKeyFile }}"
 
@@ -527,7 +527,7 @@ var testGenesisFmt = `{
   "validators": [
     {
       "pub_key": {
-        "type": "tendermint/PubKeyEd25519",
+        "type": "supermint/PubKeyEd25519",
         "value":"AT/+aaL1eB0477Mud9JMm8Sh8BIvOYlPGC9KkIUmFaE="
       },
       "power": "10",
@@ -540,11 +540,11 @@ var testGenesisFmt = `{
 var testPrivValidatorKey = `{
   "address": "A3258DCBF45DCA0DF052981870F2D1441A36D145",
   "pub_key": {
-    "type": "tendermint/PubKeyEd25519",
+    "type": "supermint/PubKeyEd25519",
     "value": "AT/+aaL1eB0477Mud9JMm8Sh8BIvOYlPGC9KkIUmFaE="
   },
   "priv_key": {
-    "type": "tendermint/PrivKeyEd25519",
+    "type": "supermint/PrivKeyEd25519",
     "value": "EVkqJO/jIXp3rkASXfh9YnyToYXRXhBr6g9cQVxPFnQBP/5povV4HTjvsy530kybxKHwEi85iU8YL0qQhSYVoQ=="
   }
 }`

@@ -3,16 +3,16 @@ package core
 import (
 	"time"
 
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/p2p"
-	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
-	"github.com/tendermint/tendermint/types"
+	tmbytes "github.com/vbhp/supermint/libs/bytes"
+	"github.com/vbhp/supermint/p2p"
+	ctypes "github.com/vbhp/supermint/rpc/core/types"
+	rpctypes "github.com/vbhp/supermint/rpc/jsonrpc/types"
+	"github.com/vbhp/supermint/types"
 )
 
-// Status returns Tendermint status including node info, pubkey, latest block
+// Status returns Superminttatus including node info, pubkey, latest block
 // hash, app hash, block height and time.
-// More: https://docs.tendermint.com/master/rpc/#/Info/status
+// More: https://docs.supermint.com/master/rpc/#/Info/status
 func Status(ctx *rpctypes.Context) (*ctypes.ResultStatus, error) {
 	var (
 		earliestBlockHeight   int64

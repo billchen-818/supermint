@@ -5,11 +5,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/tendermint/tendermint/libs/cmap"
-	"github.com/tendermint/tendermint/libs/log"
-	"github.com/tendermint/tendermint/libs/service"
+	"github.com/vbhp/supermint/libs/cmap"
+	"github.com/vbhp/supermint/libs/log"
+	"github.com/vbhp/supermint/libs/service"
 
-	tmconn "github.com/tendermint/tendermint/p2p/conn"
+	tmconn "github.com/vbhp/supermint/p2p/conn"
 )
 
 //go:generate mockery --case underscore --name Peer

@@ -7,10 +7,10 @@ import (
 	"github.com/gogo/protobuf/proto"
 	dbm "github.com/tendermint/tm-db"
 
-	tmsync "github.com/tendermint/tendermint/libs/sync"
-	tmstore "github.com/tendermint/tendermint/proto/tendermint/store"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/types"
+	tmsync "github.com/vbhp/supermint/libs/sync"
+	tmstore "github.com/vbhp/supermint/proto/supermint/store"
+	tmproto "github.com/vbhp/supermint/proto/supermint/types"
+	"github.com/vbhp/supermint/types"
 )
 
 /*
@@ -37,7 +37,7 @@ type BlockStore struct {
 	// fine-grained concurrency control for its data, and thus this mutex does not apply to
 	// database contents. The only reason for keeping these fields in the struct is that the data
 	// can't efficiently be queried from the database since the key encoding we use is not
-	// lexicographically ordered (see https://github.com/tendermint/tendermint/issues/4567).
+	// lexicographically ordered (see https://github.com/vbhp/supermint/issues/4567).
 	mtx    tmsync.RWMutex
 	base   int64
 	height int64
