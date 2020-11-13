@@ -145,6 +145,9 @@ type BaseConfig struct { //nolint: maligned
 	// chainID is unexposed and immutable but here for convenience
 	chainID string
 
+	// MessageEnable is the message function.
+	MessageEnable bool `mapstructure:"message_enable"`
+
 	// The root directory for all data.
 	// This should be set in viper so it can unmarshal into this struct
 	RootDir string `mapstructure:"home"`
@@ -231,6 +234,7 @@ func DefaultBaseConfig() BaseConfig {
 		FilterPeers:        false,
 		DBBackend:          "goleveldb",
 		DBPath:             "data",
+		MessageEnable:      true,
 	}
 }
 

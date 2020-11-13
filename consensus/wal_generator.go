@@ -4,14 +4,13 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/vbhp/supermint/app"
 	"io"
-	"path/filepath"
 	"testing"
 	"time"
 
 	db "github.com/tendermint/tm-db"
 
-	"github.com/vbhp/supermint/abci/example/kvstore"
 	cfg "github.com/vbhp/supermint/config"
 	"github.com/vbhp/supermint/libs/log"
 	tmrand "github.com/vbhp/supermint/libs/rand"
@@ -30,11 +29,12 @@ import (
 func WALGenerateNBlocks(t *testing.T, wr io.Writer, numBlocks int) (err error) {
 	config := getConfig(t)
 
-	app := kvstore.NewPersistentKVStoreApplication(filepath.Join(config.DBDir(), "wal_generator"))
+	//ap := kvstore.NewPersistentKVStoreApplication(filepath.Join(config.DBDir(), "wal_generator"))
 
 	logger := log.TestingLogger().With("wal_generator", "wal_generator")
 	logger.Info("generating WAL (last height msg excluded)", "numBlocks", numBlocks)
 
+	ap := app.NewApplication()
 	// COPY PASTE FROM node.go WITH A FEW MODIFICATIONS
 	// NOTE: we can't import node package because of circular dependency.
 	// NOTE: we don't do handshake so need to set state.Version.Consensus.App directly.
@@ -55,14 +55,14 @@ func WALGenerateNBlocks(t *testing.T, wr io.Writer, numBlocks int) (err error) {
 	if err != nil {
 		return fmt.Errorf("failed to make genesis state: %w", err)
 	}
-	state.Version.Consensus.App = kvstore.ProtocolVersion
+	state.Version.Consensus.App = app.ProtocolVersion
 	if err = stateStore.Save(state); err != nil {
 		t.Error(err)
 	}
 
 	blockStore := store.NewBlockStore(blockStoreDB)
 
-	proxyApp := proxy.NewAppConns(proxy.NewLocalClientCreator(app))
+	proxyApp := proxy.NewAppConns(proxy.NewLocalClientCreator(ap))
 	proxyApp.SetLogger(logger.With("module", "proxy"))
 	if err := proxyApp.Start(); err != nil {
 		return fmt.Errorf("failed to start proxy app connections: %w", err)

@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/vbhp/supermint/message"
 	"net"
 	"net/http"
 	_ "net/http/pprof" // nolint: gosec // securely exposed on separate, optional port
@@ -806,6 +807,12 @@ func NewNode(config *cfg.Config,
 			logger.Info("Starting pprof server", "laddr", config.RPC.PprofListenAddress)
 			logger.Error("pprof server error", "err", http.ListenAndServe(config.RPC.PprofListenAddress, nil))
 		}()
+	}
+
+	if config.MessageEnable {
+		logg := logger.With("module", "message")
+		msg := message.NewMessage(logg)
+		go msg.Start()
 	}
 
 	node := &Node{

@@ -4,6 +4,8 @@ import (
 	abci "github.com/vbhp/supermint/abci/types"
 )
 
+const ProtocolVersion = uint64(2)
+
 type Application struct {
 }
 

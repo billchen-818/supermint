@@ -84,6 +84,9 @@ const defaultConfigTemplate = `# This is a TOML config file.
 # or the name of an ABCI application compiled in with the Supermint binary
 proxy_app = "{{ .BaseConfig.ProxyApp }}"
 
+# A messaging function.
+message_enable = "{{.BaseConfig.MessageEnable}}"
+
 # A custom human readable name for this node
 moniker = "{{ .BaseConfig.Moniker }}"
 
