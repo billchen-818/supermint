@@ -18,6 +18,7 @@ import (
 	dbm "github.com/tendermint/tm-db"
 
 	abci "github.com/vbhp/supermint/abci/types"
+	"github.com/vbhp/supermint/app"
 	bcv0 "github.com/vbhp/supermint/blockchain/v0"
 	bcv1 "github.com/vbhp/supermint/blockchain/v1"
 	bcv2 "github.com/vbhp/supermint/blockchain/v2"
@@ -100,7 +101,7 @@ func DefaultNewNode(config *cfg.Config, logger log.Logger) (*Node, error) {
 	return NewNode(config,
 		pval,
 		nodeKey,
-		proxy.DefaultClientCreator(config.ProxyApp, config.ABCI, config.DBDir()),
+		proxy.NewLocalClientCreator(app.NewApplication()),
 		DefaultGenesisDocProviderFunc(config),
 		DefaultDBProvider,
 		DefaultMetricsProvider(config.Instrumentation),

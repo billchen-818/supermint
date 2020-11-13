@@ -12,6 +12,7 @@ import (
 
 	dbm "github.com/tendermint/tm-db"
 
+	"github.com/vbhp/supermint/app"
 	cfg "github.com/vbhp/supermint/config"
 	"github.com/vbhp/supermint/libs/log"
 	tmos "github.com/vbhp/supermint/libs/os"
@@ -308,7 +309,7 @@ func newConsensusStateForReplay(config cfg.BaseConfig, csConfig *cfg.ConsensusCo
 	}
 
 	// Create proxyAppConn connection (consensus, mempool, query)
-	clientCreator := proxy.DefaultClientCreator(config.ProxyApp, config.ABCI, config.DBDir())
+	clientCreator := proxy.NewLocalClientCreator(app.NewApplication())
 	proxyApp := proxy.NewAppConns(clientCreator)
 	err = proxyApp.Start()
 	if err != nil {
